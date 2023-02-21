@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  
+  <title>Product preview card component</title>
+
+  <link rel="stylesheet" href="styles.css">
+
+  <!-- React libraries -->
+  <script src="https://unpkg.com/react@17/umd/react.production.min.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js" crossorigin></script>
+  <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+  <!-- Google fonts -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&display=swap" rel="stylesheet">
+
+  <!-- TODO: Javascript for changing image source for mobile/desktop-->
+  <script>
+    // Change image source depending on flexbox orientation
+    window.addEventListener('DOMContentLoaded', (event) => {
+        // Display appropriate image if initially on mobile
+        // 600px — breakpoint for mobile devices
+        if (window.innerWidth <= 600) {
+          document.getElementById("image").src = "./images/image-product-mobile.jpg";
+          document.querySelector('.product_image').style.maxWidth = "80%";
+          document.querySelector('.product_text').style.maxWidth = "80%";
+        }
+
+        window.addEventListener('resize', function() {
+          // Get positions of image and text divs
+          const product_image = document.querySelector('.product_image').getBoundingClientRect().top;
+          const product_text = document.querySelector('.product_text').getBoundingClientRect().top;
+          //console.log(product_text);
+          //console.log(product_image);
+
+          // Divs are stacked on top, use mobile image
+          if (product_text - product_image > 5) {
+              console.log("Using mobile image");
+              document.getElementById("image").src = "./images/image-product-mobile.jpg";
+          }
+          // Use desktop image
+          else {
+              console.log("Using desktop image");
+              document.getElementById("image").src = "./images/image-product-desktop.jpg";
+          }
+        
+      });
+    });
+   
+
+  </script>
+
+</head>
+<body>
+
+  <div class="product">
+
+    <div class="product_image">
+      <img id="image" src="images/image-product-desktop.jpg" alt="Product image"/>
+    </div>
+
+    
+    <div class="product_text">
+      <p class="category">Perfume</p>
+      <h1 class="title">Gabrielle Essence Eau De Parfum</h1>
+      <p class="description">A floral, solar and voluptuous interpretation composed by Olivier Polge, Perfumer-Creator for the House of CHANEL.</p>
+      <h1 class="price">$149.99</h1>
+      <p class="old_price">$169.99</p>
+      <button class="add_to_cart">
+        <img class="cart_icon" src="/images/icon-cart.svg">
+        Add to Cart
+      </button>
+    </div>
+
+     <!-- "app" div for React
+    <div id="app"></div>-->
+  </div>   
+  
+  <div class="attribution">
+    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
+    Coded by <a href="https://github.com/alvcwy">alvcwy</a>.
+  </div> 
+
+  <!-- React code -->
+  <script type="text/babel">
+    /*
+    TODO: Figure out how to call function from another React function */
+      function Product(props) {
+          return (
+              <div class="product_text">
+                <p class="category">{props.product.category}</p>
+                <h1 class="title">{props.product.title}</h1>
+                <p class="description">{props.product.description}</p>
+                <p class="price">${props.product.price}</p>
+                <p class="old_price">${props.product.old_price}</p>
+                <button class="add_to_cart">Add to Cart</button>
+              </div>
+          );
+      }
+  
+    var perfume = {
+        category: "Perfume",
+        title: "Gabrielle Essence Eau De Parfum",
+        description: "A floral, solar and voluptuous interpretation composed by Olivier Polge, Perfumer-Creator for the House of CHANEL.",
+        price: 149.99,
+        old_price: 169.99
+    };
+
+    //import productImage from './images/image-product-desktop.jpg';
+    // const productImage = require('./images/image-product-desktop.jpg');
+    /*
+    TODO: Local images don't work well in React 
+    Need to create-react-app and import image 
+    function App(props) {
+        return (
+          <div class="product">
+              <div class="product_image">
+                <img id="image" src="images/image-product-desktop.jpg" alt="Product image"/>
+              </div>
+              <div class="product_text">
+                <Product product={perfume} />
+              </div>
+          </div>
+          
+        );
+    }
+    */
+
+    //ReactDOM.render(<Product product={perfume} />, document.querySelector("#app"));
+  </script>
+
+</body>
+</html>

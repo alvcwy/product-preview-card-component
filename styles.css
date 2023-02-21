@@ -1,0 +1,156 @@
+body {
+    background-color: hsl(30, 38%, 92%);
+    font-family: "Montserrat";
+    font-weight: 500;
+}
+
+/* Container for product */
+.product {
+    /* To visualize where product div is
+    border-color: black;
+    border-style: dotted; */
+
+    /* Flex container display, so text will wrap below image on mobile */
+    display: flex; 
+    flex-wrap: wrap;
+    justify-content: center;
+
+    /* Round corners of div on mobile */
+    border-radius: 15px;
+    overflow: hidden; 
+
+
+    /* Set dimensions of div */
+    width: 90%;
+    /*min-width: 300px;        To prevent div from shrinking on mobile 
+    height: 30%; */
+
+    /* Center div, move it a bit lower */
+    margin: auto;
+    margin-top: max(8%, 30px);        /* Move div down, minimum 30px */
+
+}
+
+/* Image for product */
+.product_image {
+    /* To visualize where product div is 
+    border-color: blue;
+    border-style: solid; */
+
+    text-align: center;
+
+    /* To allow product_text div to be displayed on same row, otherwise product_image div will fill row */
+    max-width: 300px;
+    /* min-width: 300px; */
+    
+    /* Round left top and left bottom corners */
+    border-radius: 15px 0px 0px 15px;
+    overflow: hidden;
+}
+#image {
+    /* To completely fill product_image div with image 
+    https://developer.mozilla.org/en-US/docs/Learn/CSS/Howto/Fill_a_box_with_an_image */
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+
+    /* Animation for zoom in on hover */
+    transition: transform .2s;
+}
+#image:hover {
+    transform: scale(1.5); /* Zoom in image on hover */
+}
+
+/* Text for product */
+.product_text {
+    /* To visualize where product div is 
+    border-color: green;
+    border-style: solid; */
+
+    text-align: left;
+    background-color: white;
+
+    /* Actual width is equal to width + padding */
+    padding-left: 30px;
+    padding-right: 30px;
+    max-width: 240px;
+    /* min-width: 240px; */
+
+    /* Round right top and right bottom corners */
+    border-radius: 0px 15px 15px 0px;
+    overflow: hidden;
+}
+
+/* Change max-width of product_image and product_text divs to optimize for mobile */
+@media only screen and (max-width: 700px) {
+    .product_image {
+        max-width: 100%;
+        border-radius: 0px;
+    }
+    .product_text {
+        max-width: calc(100% - 60px);  /* Deduct padding from total width, since padding also adds to width */
+        border-radius: 0px;
+    }
+}
+
+/* Text styling */
+.category {
+    text-transform: uppercase;  /* Capitalize all letters */
+    letter-spacing: 0.2em;      /* Space letters apart */
+    margin-top: 30px;
+    color: grey;
+}
+
+.title {
+    font-family: "Fraunces", serif;
+    font-weight: 900;
+}
+
+.description {
+    line-height: 1.5;       /* Spacing between lines */
+    color: grey;
+}
+
+.price {
+    font-family: "Fraunces", serif;
+    color: hsl(158, 36%, 37%);
+    display: inline;
+}
+
+.old_price {
+    text-decoration: line-through;
+    color: grey;
+    display: inline;
+    margin-left: 20px;
+    vertical-align: middle;
+    padding-bottom: 15px;       /* Moves text upwards slightly */
+}
+
+.add_to_cart {
+    justify-content: center;
+    margin-top: 20px;
+    margin-bottom: 30px;
+    padding: 15px;
+    background-color: hsl(158, 36%, 37%);
+    color: white;
+    border-radius: 10px;
+    width: 100%;
+    border: none;
+    font-weight: 700;
+    vertical-align: middle;
+
+    /* For hover effect */
+    transition-duration: 0.4s;
+}
+
+.add_to_cart:hover {
+    background-color: hsl(161, 42%, 54%);
+    color: white;
+}
+
+.cart_icon {
+    padding-right: 10px;
+}
+
+.attribution { margin-top: 20px;font-size: 11px; text-align: center; }
+.attribution a { color: hsl(228, 45%, 44%); }
